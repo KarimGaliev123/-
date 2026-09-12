@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-разработка - Создание сайтов для вашего бизнеса</title>
+    <link rel="icon" href="фото/kjuj.png" type="image/png">
+    <meta name="description" content="Создаю современные, эффективные сайты для бизнеса в России. Индивидуальный подход, гарантия результата.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #d4af37;
+            --text-color: #333;
+            --light-gray: #f8f8f8;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+        }
+
+        /* Мобильное меню */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .cta-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button i {
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 120px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, 30px) rotate(180deg); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-content .slogan {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            font-weight: 500;
+            opacity: 0.95;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: slideInLeft 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: slideInLeft 0.8s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 15px 40px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: slideInRight 0.8s ease-out 0.6s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            left: -10px;
+            background: linear-gradient(45deg, var(--secondary-color), transparent);
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                rgba(26, 26, 26, 0.8) 0%,
+                rgba(26, 26, 26, 0.4) 50%,
+                rgba(26, 26, 26, 0.2) 100%);
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: slideInRight 0.8s ease-out 0.6s both;
+            overflow: hidden;
+        }
+
+        /* Статистика */
+        .stats {
+            padding: 80px 40px;
+            background: var(--light-gray);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        /* Услуги */
+        .services {
+            padding: 80px 40px;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            padding: 40px 30px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        
+        /* Гарантии */
+        .guarantees {
+            padding: 80px 40px;
+            background: var(--white);
+        }
+
+        .guarantees-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .guarantees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .guarantee-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .guarantee-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .guarantee-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Цены */
+        .pricing {
+            padding: 80px 40px;
+            background: var(--light-gray);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card .btn-primary {
+            margin-top: auto;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 40px;
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Футер */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            /* Скрываем кнопки навигации на мобильных устройствах */
+            .cta-buttons {
+                display: none !important;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .slogan {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            /* Увеличиваем отступы сверху, чтобы контент не был под навигацией */
+            .hero {
+                padding-top: 100px;
+            }
+
+            /* Стили для мобильного меню */
+            .nav-links.active {
+                display: flex !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-buttons .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .stats-container,
+            .services-container,
+            .guarantees-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 0.95rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content .slogan {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .service-card,
+            .pricing-card {
+                padding: 30px 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 1rem;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+
+            .cta p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .hero-container {
+                max-width: 1400px;
+            }
+
+            .services-container,
+            .guarantees-grid,
+            .pricing-grid {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .pricing-grid {
+                gap: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <!-- Логотип без изображения -->
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#pricing">Цены</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <div class="cta-buttons" style="justify-content: flex-end; padding-right: 50px;">
+                <a href="https://t.me/kyzq_45" class="cta-button" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    Telegram
+                </a>
+                <a href="https://wa.me/qr/YVD7NXGNLXQKO1" class="cta-button" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+                <a href="https://vk.com/id735102175" class="cta-button" target="_blank">
+                    <i class="fab fa-vk"></i>
+                    ВКонтакте
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Attention (Внимание) -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Создаю сайты,<br>которые приносят деньги</h1>
+                <div class="slogan">
+                    Веб-разработка для бизнеса в России. Индивидуальный подход, гарантия результата.
+                </div>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary">
+                        <i class="fas fa-cogs"></i>
+                        Мои услуги
+                    </a>
+                    <a href="https://t.me/kyzq_45" class="btn-secondary" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                        Telegram
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80" alt="Веб-разработка" class="hero-main-image">
+                <div class="hero-image-overlay"></div>
+            </div>
+                        
+        </div>
+    </section>
+
+
+    <!-- Услуги - Interest (Интерес) -->
+    <section id="services" class="services">
+        <div class="section-title">
+            <h2>Мои услуги</h2>
+            <p>Комплексные решения для вашего онлайн-бизнеса</p>
+        </div>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Корпоративные сайты</h3>
+                <p>Создаю современные бизнес-сайты, которые отлично выглядят на всех устройствах и привлекают клиентов.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>Интернет-магазины</h3>
+                <p>Функциональные онлайн-магазины с интеграцией платежных систем и удобной админкой.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Landing Pages</h3>
+                <p>Высококонверсионные одностраничные сайты для быстрого старта вашего бизнеса.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>UI/UX дизайн</h3>
+                <p>Современный дизайн сайтов, который вызывает доверие и увеличивает продажи.</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Гарантии - Interest (Интерес) -->
+    <section class="guarantees">
+        <div class="guarantees-container">
+            <div class="section-title">
+                <h2>Почему мне доверяют</h2>
+                <p>Мои принципы работы, которые гарантируют успех вашего проекта</p>
+            </div>
+            <div class="guarantees-grid">
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h3>Редизайн бесплатно</h3>
+                    <p>Если вы не довольны результатом - переделаю бесплатно.</p>
+                </div>
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Сроки</h3>
+                    <p>Соблюдаю сроки. Даже при форс-мажорах вы будете в курсе прогресса.</p>
+                </div>
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Гарантия качества</h3>
+                    <p>Работаю только с современными технологиями. Код проходит multiple verification.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цены - Desire (Желание) -->
+    <section id="pricing" class="pricing">
+        <div class="pricing-container">
+            <div class="section-title">
+                <h2>Инвестиции в ваш бизнес</h2>
+                <p>Гибкие тарифы для проектов любого масштаба</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Старт</h3>
+                    <div class="price">
+                        40 000 <span class="price-period">₽</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Landing Page</li>
+                        <li>✓ Адаптивный дизайн</li>
+                        <li>✓ Базовая SEO-оптимизация</li>
+                        <li>✓ Интеграция Google Аналитика</li>
+                        <li>✓ 1 месяц поддержки</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Заказать
+                    </a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Бизнес</h3>
+                    <div class="price">
+                        90 000 <span class="price-period">₽</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Корпоративный сайт</li>
+                        <li>✓ CMS (WordPress/Bitrix)</li>
+                        <li>✓ 15 страниц контента</li>
+                        <li>✓ Формы обратной связи</li>
+                        <li>✓ 3 месяца поддержки</li>
+                        <li>✓ SEO-оптимизация</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Заказать
+                    </a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <div class="price">
+                        от 180 000 <span class="price-period">₽</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Интернет-магазин</li>
+                        <li>✓ Индивидуальная разработка</li>
+                        <li>✓ Интеграция платежных систем</li>
+                        <li>✓ CRM-система</li>
+                        <li>✓ Полный пакет продвижения</li>
+                        <li>✓ 6 месяцев поддержки</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Заказать
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - Action (Действие) -->
+    <section id="contact" class="cta">
+        <div class="cta-container">
+            <h2>Готовы начать проект?</h2>
+            <p>Свяжитесь со мной сегодня и получите бесплатную консультацию</p>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Опишите ваш проект</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="form-submit">
+                    <i class="fas fa-paper-plane"></i>
+                    Отправить заявку
+                </button>
+                <a href="https://t.me/kyzq_45" class="btn-secondary" style="margin-top: 15px; display: inline-block;" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    Или пишите в Telegram
+                </a>
+            </form>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://t.me/kyzq_45" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://wa.me/qr/YVD7NXGNLXQKO1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://vk.com/id735102175" target="_blank"><i class="fab fa-vk"></i></a>
+            </div>
+            <p>&copy; 2024 Веб-разработка. Все права защищены.</p>
+            <p>Разработка сайтов для бизнеса в России</p>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Мобильное меню
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuToggle.querySelector('i');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuIcon.className = 'fas fa-bars';
+            } else {
+                navLinks.classList.add('active');
+                menuIcon.className = 'fas fa-times';
+            }
+        });
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                menuIcon.className = 'fas fa-bars';
+            });
+        });
+
+        // Изменение navbar при скролле
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+
+        // Обработка формы
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Получаем данные формы
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+
+            // Показываем загрузку
+            const form = this;
+            const originalHTML = form.innerHTML;
+            form.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #d4af37; margin-bottom: 20px;"></i>
+                    <h3 style="color: white; margin-bottom: 10px;">Отправка заявки...</h3>
+                </div>
+            `;
+
+            // Отправка заявки в Telegram через прокси
+            try {
+                // Пример отправки через простой HTTP API
+                const response = await fetch('https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: '8460393859',
+                        text: `🌐 ЗАЯВКА С САЙТА\n\n👤 Имя: ${formData.name}\n📱 Телефон: ${formData.phone}\n📧 Email: ${formData.email}\n\n📝 Сообщение:\n${formData.message}\n\n⏰ Дата: ${new Date().toLocaleString('ru-RU')}`
+                    })
+                });
+
+                if (response.ok) {
+                    // Показываем сообщение об успехе
+                    form.innerHTML = `
+                        <div style="text-align: center; padding: 40px;">
+                            <i class="fas fa-check-circle" style="font-size: 3rem; color: #4CAF50; margin-bottom: 20px;"></i>
+                            <h3 style="color: white; margin-bottom: 10px;">Спасибо за заявку!</h3>
+                            <p style="color: rgba(255,255,255,0.9);">Я свяжусь с вами в ближайшее время</p>
+                        </div>
+                    `;
+
+                    // Сброс формы через 3 секунды
+                    setTimeout(() => {
+                        form.innerHTML = originalHTML;
+                        form.reset();
+                    }, 3000);
+                } else {
+                    throw new Error('Ошибка отправки');
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                // Показываем сообщение об ошибке
+                form.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #ff9800; margin-bottom: 20px;"></i>
+                        <h3 style="color: white; margin-bottom: 10px;">Ошибка отправки</h3>
+                        <p style="color: rgba(255,255,255,0.9);">Попробуйте позже или напишите в Telegram</p>
+                        <a href="https://t.me/kyzq_45" class="btn-secondary" style="margin-top: 15px; display: inline-block;" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                            Telegram
+                        </a>
+                    </div>
+                `;
+
+                // Возвращаем форму через 5 секунд
+                setTimeout(() => {
+                    form.innerHTML = originalHTML;
+                }, 5000);
+            }
+        });
+
+        // Появление элементов при скролле
+        const fadeElements = document.querySelectorAll('.service-card, .guarantee-item, .pricing-card');
+
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        const scrollObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        fadeElements.forEach(element => {
+            scrollObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
