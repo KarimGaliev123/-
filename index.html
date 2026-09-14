@@ -328,6 +328,8 @@
             position: relative;
             animation: slideInRight 0.8s ease-out 0.6s both;
             overflow: hidden;
+            height: 500px;
+            border: 2px solid red; /* Для отладки */
         }
 
         /* Статистика */
@@ -778,11 +780,19 @@
             .hero-content p {
                 font-size: 1.1rem;
             }
+
+            .hero-image {
+                height: 400px;
+            }
         }
 
         @media (max-width: 480px) {
             .hero-content h1 {
                 font-size: 2rem;
+            }
+
+            .hero-image {
+                height: 350px;
             }
 
             .hero-content .slogan {
@@ -897,8 +907,7 @@
                     </a>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="./photo/kjuj.png" alt="Веб-разработка - Создание сайтов для вашего бизнеса" class="hero-main-image">
+            <div class="hero-image" style="background-image: url('photo/kjuj.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
                 <div class="hero-image-overlay"></div>
             </div>
                         
