@@ -6,6 +6,20 @@
     <title>Веб-разработка - Создание сайтов для вашего бизнеса</title>
     <link rel="icon" href="фото/kjuj.png" type="image/png">
     <meta name="description" content="Создаю современные, эффективные сайты для бизнеса в России. Индивидуальный подход, гарантия результата.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:title" content="Веб-разработка - Создание сайтов для вашего бизнеса">
+    <meta property="og:image" content="https://yourwebsite.com/фото/kjuj.png">
+    <meta property="og:description" content="Создаю современные, эффективные сайты для бизнеса в России. Индивидуальный подход, гарантия результата.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com">
+    <meta property="twitter:title" content="Веб-разработка - Создание сайтов для вашего бизнеса">
+    <meta property="twitter:image" content="https://yourwebsite.com/фото/kjuj.png">
+    <meta property="twitter:description" content="Создаю современные, эффективные сайты для бизнеса в России.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -884,7 +898,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80" alt="Веб-разработка" class="hero-main-image">
+                <img src="фото/kjuj.png" alt="Веб-разработка - Создание сайтов для вашего бизнеса" class="hero-main-image">
                 <div class="hero-image-overlay"></div>
             </div>
                         
@@ -1185,7 +1199,7 @@
                 </div>
             `;
 
-            // Отправка заявки в Telegram бот @webdev_kyzq_bot
+            // Отправка заявки в Telegram
             try {
                 // Формируем текст сообщения для бота
                 const serviceText = {
@@ -1213,8 +1227,8 @@
                     `⏰ Дата: ${new Date().toLocaleString('ru-RU')}\n` +
                     `🔗 Источник: Веб-сайт`;
 
-                // Используем Telegram Bot API через proxy
-                const response = await fetch('https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage', {
+                // Используем Telegram Bot API
+                const response = await fetch('https://api.telegram.org/bot7239656352:AAHy0d8h7rL5s7X6wJ7R7Y6wY7R7Y6wJ7R7Y6wY7R7/sendMessage', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1226,16 +1240,21 @@
                     })
                 });
 
-                if (response.ok) {
+                const data = await response.json();
+                if (response.ok && data.ok) {
                     // Показываем сообщение об успехе
                     form.innerHTML = `
                         <div style="text-align: center; padding: 40px;">
                             <i class="fas fa-check-circle" style="font-size: 3rem; color: #4CAF50; margin-bottom: 20px;"></i>
                             <h3 style="color: white; margin-bottom: 10px;">Спасибо за заявку!</h3>
-                            <p style="color: rgba(255,255,255,0.9);">Ваши данные отправлены в Telegram бота</p>
+                            <p style="color: rgba(255,255,255,0.9);">Ваши данные отправлены мне в Telegram</p>
                             <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 10px;">
-                                🤖 Бот обработает вашу заявку и ответит в ближайшее время
+                                📱 Я свяжусь с вами в ближайшее время
                             </p>
+                            <a href="https://t.me/kyzq_45" class="btn-primary" style="margin-top: 20px; display: inline-block;" target="_blank">
+                                <i class="fab fa-telegram"></i>
+                                Написать в Telegram
+                            </a>
                         </div>
                     `;
 
@@ -1245,7 +1264,7 @@
                         form.reset();
                     }, 5000);
                 } else {
-                    throw new Error('Ошибка отправки в Telegram');
+                    throw new Error(`Ошибка отправки: ${data.description || 'Неизвестная ошибка'}`);
                 }
             } catch (error) {
                 console.error('Ошибка:', error);
@@ -1265,9 +1284,9 @@
                             Бюджет: ${budgetText || 'Не указано'}<br>
                             Сроки: ${formData.deadline || 'Не указано'}
                         </p>
-                        <a href="https://t.me/webdev_kyzq_bot" class="btn-secondary" style="margin-top: 20px; display: inline-block;" target="_blank">
-                            <i class="fas fa-robot"></i>
-                            Написать боту
+                        <a href="https://t.me/kyzq_45" class="btn-secondary" style="margin-top: 20px; display: inline-block;" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                            Написать в Telegram
                         </a>
                     </div>
                 `;
